@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Surat Strawberry</title>
+<style>
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffd6e7,#ff9bb8);
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
+}
+
+/* strawberry floating */
+.strawberry{
+  position:absolute;
+  font-size:22px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-10vh)}
+}
+
+/* envelope */
+.envelope{
+  width:230px;
+  height:150px;
+  background:#ff6f91;
+  position:relative;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 15px 30px rgba(0,0,0,0.25);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:transform .3s;
+}
+
+.envelope:hover{
+  transform:scale(1.07);
+}
+
+/* top flap */
+.flap{
+  position:absolute;
+  top:0;
+  width:0;
+  height:0;
+  border-left:115px solid transparent;
+  border-right:115px solid transparent;
+  border-top:80px solid #ff85a2;
+  transform-origin:top;
+  transition:transform .6s ease;
+}
+
+.open .flap{
+  transform:rotateX(180deg);
+}
+
+/* letter */
+.letter{
+  position:absolute;
+  width:200px;
+  height:120px;
+  background:white;
+  border-radius:8px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  color:#ff4f7a;
+  font-weight:bold;
+  transform:translateY(40px);
+  transition:all .6s ease;
+}
+
+.open .letter{
+  transform:translateY(-90px);
+}
+
+.typing{
+  border-right:3px solid #ff4f7a;
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+</style>
+</head>
+<body>
+
+<!-- floating strawberries -->
+<div class="strawberry" style="left:10%;animation-delay:0s">🍓</div>
+<div class="strawberry" style="left:25%;animation-delay:1s">🍓</div>
+<div class="strawberry" style="left:40%;animation-delay:2s">🍓</div>
+<div class="strawberry" style="left:55%;animation-delay:3s">🍓</div>
+<div class="strawberry" style="left:70%;animation-delay:4s">🍓</div>
+<div class="strawberry" style="left:85%;animation-delay:5s">🍓</div>
+
+<div class="envelope" id="envelope" onclick="openLetter()">
+
+  <div class="flap"></div>
+
+  <div class="letter">
+    <span id="text" class="typing"></span>
+  </div>
+
+</div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6c6d0b1c6c.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+let opened=false
+let message="jangan marah 🍓"
+let i=0
+
+function typeWriter(){
+  if(i < message.length){
+    document.getElementById("text").innerHTML += message.charAt(i)
+    i++
+    setTimeout(typeWriter,120)
+  }
+}
+
+function openLetter(){
+  if(opened) return
+
+  opened=true
+
+  document.getElementById("envelope").classList.add("open")
+
+  document.getElementById("music").play()
+
+  setTimeout(typeWriter,500)
+}
+
+</script>
+
+</body>
+</html>

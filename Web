@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Surat Strawberry</title>
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd6e7,#ff9bb8);
+    font-family:'Segoe UI',sans-serif;
+  }
+
+  .envelope{
+    width:220px;
+    height:150px;
+    background:#ff6f91;
+    position:relative;
+    border-radius:10px;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:transform .3s;
+  }
+
+  .envelope:hover{
+    transform:scale(1.05);
+  }
+
+  .envelope:before{
+    content:"";
+    position:absolute;
+    top:-70px;
+    left:0;
+    width:0;
+    height:0;
+    border-left:110px solid transparent;
+    border-right:110px solid transparent;
+    border-bottom:70px solid #ff6f91;
+  }
+
+  .letter{
+    position:absolute;
+    width:200px;
+    height:130px;
+    background:white;
+    border-radius:8px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    color:#ff4f7a;
+    font-weight:bold;
+    transform:translateY(40px);
+    opacity:0;
+    transition:all .5s ease;
+  }
+
+  .show{
+    transform:translateY(-80px);
+    opacity:1;
+  }
+
+  .strawberry{
+    position:absolute;
+    font-size:20px;
+  }
+
+  .s1{top:10px;left:15px}
+  .s2{bottom:10px;right:20px}
+  .s3{top:20px;right:30px}
+</style>
+</head>
+<body>
+
+<div class="envelope" onclick="openLetter()">
+  <div class="letter" id="letter">Don't be mad, i didn't mean to</div>
+  <div class="strawberry s1">🍓</div>
+  <div class="strawberry s2">🍓</div>
+  <div class="strawberry s3">🍓</div>
+</div>
+
+<script>
+function openLetter(){
+  document.getElementById('letter').classList.toggle('show');
+}
+</script>
+
+</body>
+</html>
